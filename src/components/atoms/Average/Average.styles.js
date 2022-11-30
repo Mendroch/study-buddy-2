@@ -6,11 +6,12 @@ export const StyledAverage = styled.div`
   justify-content: center;
   width: 34px;
   height: 34px;
-  background-color: ${({ average }) =>
-    average < 3 ? ({ theme }) => theme.colors.error :
-    average < 4 ? ({ theme }) => theme.colors.warning :
-    ({ theme }) => theme.colors.success 
-  };
+  background-color: ${({ theme, average }) => {
+    if (average > 4) return theme.colors.success;
+    if (average > 3) return theme.colors.warning;
+    if (average > 2) return theme.colors.error;
+    return theme.colors.grey;
+  }};
   border-radius: 50%;
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSize.m};
