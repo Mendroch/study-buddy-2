@@ -48,10 +48,6 @@ export const StyledInfo = styled.div`
     font-size: ${({ theme }) => theme.fontSize.l};
   }
 
-  p:first-child button {
-    margin-left: 12px;
-  }
-
   p:last-child {
     font-size: ${({ theme }) => theme.fontSize.m};
   }
