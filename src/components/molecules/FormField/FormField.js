@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Label } from '../../atoms/Label/Label';
-import { Input } from '../../atoms/Input/Input';
+import { Label } from 'components/atoms/Label/Label';
+import { Input } from 'components/atoms/Input/Input';
 
 const Wrapper = styled.div`
   display: flex;
