@@ -10,4 +10,4 @@ export const renderWithProviders = (children) => {
       <UsersProvider>{children}</UsersProvider>
     </ThemeProvider>
   );
-}
+};
