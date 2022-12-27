@@ -2,7 +2,7 @@ import { Input } from 'components/atoms/Input/Input';
 import React, { useState } from 'react';
 import debounce from 'lodash.debounce';
 import { useCombobox } from 'downshift';
-import { SearchBarWrapper, SearchResults, SearchResultsItem, SearchWrapper, StatusInfo } from 'components/organisms/SearchBar/SearchBar.styles';
+import { SearchBarWrapper, SearchResults, SearchResultsItem, SearchWrapper, StatusInfo } from './SearchBar.styles';
 import { useStudents } from 'hooks/useStudents';
 
 export const SearchBar = () => {
