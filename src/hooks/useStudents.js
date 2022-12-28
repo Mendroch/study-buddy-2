@@ -18,7 +18,7 @@ export const useStudents = () => {
     } catch (e) {
       console.log(e);
     }
-  });
+  }, []);
 
   const getStudentsByGroup = useCallback(async (groupId) => {
     try {
@@ -29,7 +29,7 @@ export const useStudents = () => {
     }
   }, []);
 
-  const findStudents = async (searchPhrase) => {
+  const findStudents = useCallback(async (searchPhrase) => {
     try {
       const { data } = await axios.post(`/students/search`, {
         searchPhrase,
@@ -38,7 +38,7 @@ export const useStudents = () => {
     } catch (e) {
       console.log(e);
     }
-  };
+  }, []);
 
   return {
     getGroups,
