@@ -12,7 +12,7 @@ export const db = factory({
   student: {
     id: primaryKey(faker.datatype.uuid),
     name: () => faker.fake('{{name.firstName}} {{name.lastName}}'),
-    attendance: () => `${faker.datatype.number({ min: 0, max: 100 })}%`,
+    attendance: () => `${faker.datatype.number({ min: 0, max: 100 })}`,
     average: getRandomAverage,
     group: () => getRandomValue(groups, faker.datatype.number({ min: 0, max: 2 })),
     course: () => faker.fake('{{company.bsAdjective}} {{company.bsNoun}}'),
@@ -40,5 +40,11 @@ export const db = factory({
     group: () => getRandomValue(groups, faker.datatype.number({ min: 0, max: 2 })),
     subject: () => faker.fake('{{company.bsAdjective}} {{company.bsNoun}}'),
     date: faker.date.soon,
+  },
+  teacher: {
+    id: primaryKey(() => '1'),
+    name: () => 'Jacek Sobczak',
+    login: () => 'teacher@studybuddy.com',
+    password: () => 'Test123',
   },
 });
