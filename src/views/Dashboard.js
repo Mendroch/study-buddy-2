@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Redirect, useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Navigate, useParams, Link } from 'react-router-dom';
 import StudentsList from 'components/organisms/StudentsList/StudentsList';
 import { useStudents } from 'hooks/useStudents';
 import { GroupWrapper, TitleWrapper, Wrapper } from 'views/Dashboard.styles';
@@ -11,7 +10,7 @@ import Modal from 'components/organisms/Modal/Modal';
 
 const Dashboard = () => {
   const [groups, setGroups] = useState([]);
-  const [currentStudent, setCurrentStudent] = useState([]);
+  const [currentStudent, setCurrentStudent] = useState(null);
   const { getGroups, getStudentById } = useStudents();
   const { id } = useParams();
   const { isOpen, handleOpenModal, handleCloseModal } = useModal();
@@ -19,6 +18,7 @@ const Dashboard = () => {
   useEffect(() => {
     (async () => {
       const groups = await getGroups();
+      console.log(groups);
       setGroups(groups);
     })();
   }, [getGroups]);
@@ -29,7 +29,7 @@ const Dashboard = () => {
     handleOpenModal();
   };
 
-  if (!id && groups.length > 0) return <Redirect to={`/group/${groups[0]}`} />;
+  if (!id && groups.length > 0) return <Navigate to={`/group/${groups[0].id}`} />;
 
   return (
     <Wrapper>

@@ -13,7 +13,6 @@ studentsAPI.interceptors.request.use(
 
     return config;
   },
-
   (error) => {
     return Promise.reject(error);
   }
@@ -47,7 +46,7 @@ export const useStudents = () => {
     }
   }, []);
 
-  const findStudents = useCallback(async (searchPhrase) => {
+  const findStudents = async (searchPhrase) => {
     try {
       const { data } = await studentsAPI.post(`/students/search`, {
         searchPhrase,
@@ -56,7 +55,7 @@ export const useStudents = () => {
     } catch (e) {
       console.log(e);
     }
-  }, []);
+  };
 
   return {
     getGroups,

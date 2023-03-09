@@ -1,9 +1,11 @@
 import Modal from './Modal';
 import StudentDetails from 'components/molecules/StudentDetails/StudentDetails';
+
 export default {
   title: 'Components/Organisms/Modal',
   component: Modal,
 };
+
 const Template = (args) => (
   <Modal {...args}>
     <StudentDetails
@@ -32,4 +34,5 @@ const Template = (args) => (
     />
   </Modal>
 );
+
 export const Student = Template.bind({});

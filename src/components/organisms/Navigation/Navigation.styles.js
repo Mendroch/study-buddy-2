@@ -30,8 +30,8 @@ export const Logo = styled.div`
   }
 `;
 
-const activeClassName = 'active-link';
-export const StyledLink = styled(NavLink).attrs({ activeClassName })`
+const activeclassname = 'active-link';
+export const StyledLink = styled(NavLink).attrs({ activeclassname })`
   cursor: pointer;
   font-weight: bold;
   text-decoration: none;
@@ -40,7 +40,7 @@ export const StyledLink = styled(NavLink).attrs({ activeClassName })`
   margin: 15px 20px 15px auto;
   position: relative;
 
-  &.${activeClassName} {
+  &.${activeclassname} {
     &::after {
       opacity: 1;
     }

@@ -1,31 +1,29 @@
 import React from 'react';
 import { Wrapper } from './Root.styles';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 import Dashboard from 'views/Dashboard';
 import FormField from 'components/molecules/FormField/FormField';
 import { Button } from 'components/atoms/Button/Button';
 import { useForm } from 'react-hook-form';
 import { useAuth } from 'hooks/useAuth';
+import ErrorMessage from 'components/molecules/ErrorMessage/ErrorMessage';
+import { useError } from 'hooks/useError';
 
 const AuthenticatedApp = () => {
   return (
     <MainTemplate>
       <Wrapper>
-        <Switch>
-          <Route exact path="/">
-            <Redirect to="/group" />
-          </Route>
-          <Route path="/group/:id?">
-            <Dashboard />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route exact path="/" element={<Navigate to="/group" />} />
+          <Route path="/group/:id?" element={<Dashboard />} />
+        </Routes>
       </Wrapper>
     </MainTemplate>
   );
 };
 
-const UnauthenticatedApp = ({ handleSignIn, loginError }) => {
+const UnauthenticatedApp = () => {
   const auth = useAuth();
   const {
     register,
@@ -49,8 +47,14 @@ const UnauthenticatedApp = ({ handleSignIn, loginError }) => {
 
 const Root = () => {
   const auth = useAuth();
+  const { error } = useError();
 
-  return auth.user ? <AuthenticatedApp /> : <UnauthenticatedApp />;
+  return (
+    <>
+      {error ? <ErrorMessage /> : null}
+      {auth.user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+    </>
+  );
 };
 
 export default Root;
