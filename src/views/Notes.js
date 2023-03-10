@@ -10,24 +10,24 @@ const Notes = () => {
   const notes = useSelector((state) => state.notes);
   const dispatch = useDispatch();
 
-  const handleAddNote = ({ title, content }) => {
-    dispatch(addNote({ title, content }));
-  };
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  const handleAddNote = ({ title, content }) => {
+    dispatch(addNote({ title, content }));
+  };
+
   return (
     <Wrapper>
-      <FormWrapper>
-        <StyledFormField label="Title" name="title" id="title" {...register('title', { required: true })} />
+      <FormWrapper onSubmit={handleSubmit(handleAddNote)}>
+        <StyledFormField {...register('title', { required: true })} label="Title" name="title" id="title" />
+        <StyledFormField {...register('content', { required: true })} isTextarea label="Content" name="content" id="content" />
         {errors.title && <span>Title is required</span>}
-        <StyledFormField isTextarea label="Content" name="content" id="content" {...register('content', { required: true })} />
         {errors.content && <span>Content is required</span>}
-        <Button onClick={handleSubmit(handleAddNote)}>Add</Button>
+        <Button type="submit">Add</Button>
       </FormWrapper>
       <NotesWrapper>
         {notes.length ? (
