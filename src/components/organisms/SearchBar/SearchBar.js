@@ -17,6 +17,7 @@ export const SearchBar = () => {
   const { isOpen, getMenuProps, getInputProps, getComboboxProps, highlightedIndex, getItemProps } = useCombobox({
     items: matchingStudents,
     onInputValueChange: getMatchingStudents,
+    itemToString: (item) => (item ? item.name : ''),
   });
 
   return (
